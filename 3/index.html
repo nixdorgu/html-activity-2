@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Hangman</title>
+</head>
+
+<body>
+    <nav>
+        <div class="game-intro">
+            <h1>Hangman</h1>
+            <p>Can you beat the timer?</p>
+        </div>
+        <div class="game-stats">
+            <p class="timer">02:00</p>
+            <p class="wrong">
+                <span class="wrong-answers">0</span> out of 6
+            </p>
+        </div>
+    </nav>
+    <div class="hangman-container">
+        <svg class="hangman-figure-container" width="180px" height="280px">
+            <!-- Rod -->
+            <line x1="60" y1="20" x2="140" y2="20" />
+            <line x1="140" y1="20" x2="140" y2="50" />
+            <line x1="60" y1="20" x2="60" y2="230" />
+            <line x1="20" y1="230" x2="100" y2="230" />
+            <!-- Head -->
+            <circle cx="140" cy="70" r="20" class="hide" />
+            <!-- Body -->
+            <line x1="140" y1="90" x2="140" y2="150" class="hide" />
+            <!-- Arms -->
+            <line x1="140" y1="120" x2="120" y2="100" class="hide" />
+            <line x1="140" y1="120" x2="160" y2="100" class="hide" />
+            <!-- Legs -->
+            <line x1="140" y1="150" x2="120" y2="180" class="hide" />
+            <line x1="140" y1="150" x2="160" y2="180" class="hide" />
+        </svg>
+    </div>
+
+    <div class="word"></div>
+    <div id="keyboard"></div>
+    <div class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Game over, you got <span class="correct-words"></span> word/s right!</p>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+
+</html>

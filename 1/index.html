@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>World Clock</title>
+</head>
+
+<body>
+    <header>
+        <h2>World Clock</h2>
+        <div class="header-options">
+            <input type="text" placeholder="Timezone Name" name="timezone-name" id="timezone-name" required>
+            <input type="number" placeholder="GMT Offset" name="timezone-offset" id="timezone-offset" required>
+            <button type="button" value="Submit" onclick="handleClick()">Add Clock</button>
+        </div>
+    </header>
+    <main>
+        <div id="Philippines" class="timezone">
+            <div class="clock">
+                <span class="hours">00</span>
+                <span class="minutes">:00</span>
+                <span class="seconds">:00</span>
+            </div>
+            <div class="country">
+                Philippines
+            </div>
+        </div>
+        <div id="Korea" class="timezone">
+
+            <div class="clock">
+                <span class="hours">00</span>
+                <span class="minutes">:00</span>
+                <span class="seconds">:00</span>
+            </div>
+            <div class="country">
+                Korea
+            </div>
+        </div>
+    </main>
+</body>
+<script src="script.js"></script>
+
+</html>
