@@ -71,6 +71,7 @@ nav {
   display: flex;
   justify-content: center;
   max-width: 90%;
+  margin-top: 2vw;
 }
 
 .letter {
@@ -88,8 +89,8 @@ nav {
   flex-wrap: wrap;
   height: max-content;
   justify-content: center;
-  margin-top: 5vh;
-  margin: 5vh 3vw 0vw 3vw;
+  margin-top: 10vh;
+  margin: 5vw 3vw 0vw 3vw;
 }
 
 #keyboard button {
@@ -143,7 +144,7 @@ nav {
 
 @media only screen and (max-width: 290px) {
   #keyboard {
-    margin-top: 20vw;
+    margin: 20vw auto auto auto;
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     height: auto;
@@ -179,11 +180,12 @@ nav {
   }
 
   .hangman-figure-container {
+    margin-top: 3vh;
     transform: scale(1.15);
   }
 
   .word {
-    margin-top: 2vh;
+    margin-top: 4vh;
   }
 
   .letter {
@@ -194,7 +196,7 @@ nav {
   }
 
   #keyboard {
-    margin-top: 3vh;
+    margin-top: 5vh;
     max-width: 75%;
   }
 
