@@ -1,7 +1,13 @@
 const wrongSpan = document.querySelector(".wrong-answers");
-const modal = document.querySelector(".modal");
-const span = document.querySelector(".close");
-const correctWordSpan = document.querySelector(".correct-words");
+
+const modal = document.querySelectorAll(".modal")[0];
+const correctWordModal = document.querySelectorAll(".modal")[1];
+
+const modalSpan = document.querySelectorAll(".close")[0];
+const correctWordSpan = document.querySelectorAll(".close")[1];
+
+const modalWordSpan = document.querySelector(".correct-words");
+const correctWord = document.querySelector(".correct-word");
 
 const alphabet = "qwertyuiopasdfghjklzxcvbnm";
 const randomizeWord = () => words[Math.floor(Math.random() * words.length)];
@@ -25,6 +31,7 @@ const words = [
 ];
 
 let countdown;
+let secondsRemaining;
 let correctWords = 0;
 let selectedWord = randomizeWord();
 let correctLetters = [],
@@ -81,13 +88,14 @@ function createKeyboard() {
 }
 
 // Countdown Helper
-function startTimer() {
+function startTimer(seconds = 120000) {
   const now = new Date().getTime();
-  const stop = now + 120000;
+  const stop = now + seconds;
 
   countdown = setInterval(() => {
     let start = new Date().getTime();
     let difference = stop - start;
+    secondsRemaining = difference;
 
     let minutes = Math.floor((difference % (1000 * 3600)) / (1000 * 60));
     let seconds = Math.floor((difference % (1000 * 60)) / 1000);
@@ -107,10 +115,14 @@ function stopTimer() {
   clearInterval(countdown);
 }
 
+function pauseTimer() {
+  stopTimer();
+}
+
 // Game helpers
 function reset() {
-  //   reset timer
-  document.querySelector(".timer").innerHTML = "02:00";
+  // reset color letter
+  document.querySelector(".word").style = "color: #000";
 
   //   reset letters
   correctLetters = [];
@@ -139,6 +151,7 @@ function reset() {
 
   //   reset modal
   modal.style.display = "none";
+  correctWordModal.style.display = "none";
 }
 
 function startGame() {
@@ -147,7 +160,16 @@ function startGame() {
   getNewWord();
 }
 
+function wordGuessed() {
+  pauseTimer();
+  document.querySelector(".word").style = "color: green";
+
+  correctWord.innerHTML = selectedWord;
+  correctWordModal.style.display = "block";
+}
+
 function newGame() {
+  document.querySelector(".timer").innerHTML = "02:00";
   correctWords = 0;
   wrongSpan.innerHTML = 0;
   startTimer();
@@ -156,21 +178,35 @@ function newGame() {
 
 function gameOver() {
   stopTimer();
-  correctWordSpan.innerHTML = correctWords;
+  modalWordSpan.innerHTML = correctWords;
   modal.style.display = "block";
 }
 
 window.onload = newGame;
 
-span.onclick = function () {
+modalSpan.onclick = function () {
   modal.style.display = "none";
   newGame();
+};
+
+correctWordSpan.onclick = function () {
+  correctWordModal.style.display = "none";
+  correctWords += 1;
+  startTimer(secondsRemaining);
+  startGame();
 };
 
 window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
     newGame();
+  }
+
+  if (event.target == correctWordModal) {
+    correctWordModal.style.display = "none";
+    correctWords += 1;
+    startTimer(secondsRemaining);
+    startGame();
   }
 };
 
@@ -193,8 +229,7 @@ function onClick(e) {
     getWord();
 
     if (difference(selectedWordSet, correctLettersSet).size == 0) {
-      correctWords += 1;
-      startGame();
+      wordGuessed();
     }
   } else {
     if (!incorrectLetters.includes(button.id)) {

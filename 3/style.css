@@ -88,14 +88,21 @@ nav {
   flex-wrap: wrap;
   height: max-content;
   justify-content: center;
-  margin-top: 5vw;
+  margin-top: 5vh;
 }
 
 #keyboard button {
+  background-color: #000;
+  color: #efefef;
   flex-basis: 10%;
   padding: 2vw;
   text-align: center;
-  min-width: 44px;
+  min-width: 40px;
+}
+
+#keyboard button:disabled {
+  color: #888;
+  background-color: #efefef;
 }
 
 .modal {
@@ -132,6 +139,7 @@ nav {
   text-decoration: none;
   cursor: pointer;
 }
+
 @media only screen and (max-width: 290px) {
   #keyboard {
     margin-top: 20vw;
@@ -185,11 +193,12 @@ nav {
   }
 
   #keyboard {
-    margin-top: 2vw;
+    margin-top: 3vh;
     max-width: 75%;
   }
 
   #keyboard button {
-    min-width: auto;
+    width: .5vh;
+    padding: 1em;
   }
 }
