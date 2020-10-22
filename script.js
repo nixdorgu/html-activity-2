@@ -88,16 +88,6 @@ function createKeyboard() {
   });
 }
 
-function disableKeyboard() {
-  const keyboard = document.querySelector("#keyboard");
-
-  for (let index = 0; index < keyboard.children.length; index++) {
-    const element = keyboard.children[index];
-    element.disabled = true;
-    
-  }
-}
-
 // Countdown Helper
 function startTimer(seconds = 120000) {
   const now = new Date().getTime();
@@ -188,10 +178,10 @@ function newGame() {
 }
 
 function gameOver() {
-  disableKeyboard();
-  stopTimer();
+  pauseTimer();
   modalWordSpan.innerHTML = correctWords;
   modal.style.display = "block";
+  stopTimer();
 }
 
 window.onload = newGame;
@@ -223,6 +213,8 @@ window.onclick = function (event) {
 };
 
 function onClick(e) {
+  if (wrongSpan.innerHTML >= 6) return;
+
   let button;
 
   if (e.type == "keydown") {
@@ -248,12 +240,12 @@ function onClick(e) {
       incorrectLetters.push(button.id);
       const figureParts = document.querySelectorAll(".hide");
 
-      wrongSpan.innerHTML = Number(wrongSpan.innerHTML) + 1;
-      figureParts[0].classList = "show";
-    }
+      if (figureParts.length != 0) {
+        figureParts[0].classList = "show";
+        wrongSpan.innerHTML = Number(wrongSpan.innerHTML) + 1;
+      }
 
-    if (wrongSpan.innerHTML == 6) {
-      gameOver();
+      if (wrongSpan.innerHTML == 6) gameOver();
     }
   }
 }
