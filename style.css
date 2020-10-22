@@ -89,6 +89,7 @@ nav {
   height: max-content;
   justify-content: center;
   margin-top: 5vh;
+  margin: 5vh 3vw 0vw 3vw;
 }
 
 #keyboard button {
